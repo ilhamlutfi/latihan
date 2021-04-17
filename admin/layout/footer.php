@@ -58,6 +58,11 @@
  <script src="assets/js/demo/chart-area-demo.js"></script>
  <script src="assets/js/demo/chart-pie-demo.js"></script>
 
+ <script src="//cdn.ckeditor.com/4.15.1/full/ckeditor.js"></script>
+ <script>
+     CKEDITOR.replace('editor1');
+ </script>
+
  </body>
 
  </html>
