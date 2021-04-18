@@ -2,8 +2,8 @@
 
 // Konfigurasi Database
 $host       = 'localhost';
-$username   = 'root'; 
-$password   = ''; 
+$username   = 'admin';
+$password   = 'Database20!';
 $dbname     = 'latihan1';
 
 $db = mysqli_connect($host, $username, $password, $dbname);

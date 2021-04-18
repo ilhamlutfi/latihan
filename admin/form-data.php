@@ -1,8 +1,24 @@
 <?php
 
-$title = 'Halaman Form Data';
+$title = 'Halaman Form Data'; // judul halaman
 
-include 'layout/header.php';
+include 'layout/header.php'; // memanggil file header.php di dlm folder layout
+
+// jika tombol tambah di tekan, jalankan perintah dibawah ini
+if (isset($_POST['tambah'])) {
+    if (create_data($_POST) > 0) {
+        echo "<script>
+                alert('Data Konten Berhasil Ditambahkan');
+                document.location.href = 'form-data.php';
+              </script>";
+    } else {
+        echo "<script>
+                alert('Data Konten Gagal Ditambahkan');
+                document.location.href = 'form-data.php';
+              </script>";
+    }
+}
+
 
 ?>
 
@@ -20,18 +36,31 @@ include 'layout/header.php';
                 <form action="" method="POST">
                     <div class="form-group">
                         <label for="judul"><b>Judul</b></label>
-                        <input type="text" name="judul" id="judul" class="form-control">
+                        <input type="text" name="judul" id="judul" class="form-control" required>
                     </div>
 
                     <div class="form-group">
                         <label for="editor1"><b>Isi Konten</b></label>
-                        <textarea name="isi_konten" id="editor1"></textarea>
+                        <textarea name="isi_konten" id="editor1" required></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="tanggal"><b>Tanggal Publish</b></label>
-                        <input type="date" name="tanggal" id="tanggal" class="form-control">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="tanggal"><b>Tanggal Publish</b></label>
+                            <input type="date" name="tanggal" id="tanggal" class="form-control" required>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="kategori"><b>Kategori</b></label>
+                            <select name="kategori" id="kategori" class="form-control" required>
+                                <option value="">-- pilih --</option>
+                                <option value="Makanan">Makanan</option>
+                                <option value="Olahraga">Olahraga</option>
+                                <option value="Pendidikan">Pendidikan</option>
+                            </select>
+                        </div>
                     </div>
+                    <button name="tambah" type="submit" class="btn btn-success float-right mt-3">Tambah</button>
                 </form>
             </div>
         </div>
