@@ -1,3 +1,6 @@
+<?php include 'config/config.php'; ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +20,8 @@
 
     <!-- Custom styles for this template-->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Custom styles for this page -->
+    <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -70,7 +75,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">List Konten :</h6>
-                        <a class="collapse-item" href="buttons.html">Makanan</a>
+                        <a class="collapse-item" href="konten-makanan.php">Makanan</a>
                         <a class="collapse-item" href="cards.html">Olahraga</a>
                         <a class="collapse-item" href="cards.html">Pendidikan</a>
                     </div>

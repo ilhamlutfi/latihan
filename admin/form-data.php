@@ -19,7 +19,6 @@ if (isset($_POST['tambah'])) {
     }
 }
 
-
 ?>
 
 <!-- Isi halaman form-data -->
