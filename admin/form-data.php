@@ -44,12 +44,12 @@ if (isset($_POST['tambah'])) {
                     </div>
 
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="tanggal"><b>Tanggal Publish</b></label>
                             <input type="date" name="tanggal" id="tanggal" class="form-control" required>
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="kategori"><b>Kategori</b></label>
                             <select name="kategori" id="kategori" class="form-control" required>
                                 <option value="">-- pilih --</option>
@@ -58,7 +58,19 @@ if (isset($_POST['tambah'])) {
                                 <option value="Pendidikan">Pendidikan</option>
                             </select>
                         </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="gambar"><b>Gambar</b></label><br>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="gambar" name="gambar" onchange="previewImg()" required>
+                                <label class="custom-file-label" for="gambar">Pilih gambar...</label>
+                            </div>
+                            <div class="mt-1">
+                                <img src="" alt="" class="img-thumbnail img-preview" width="100px">
+                            </div>
+                        </div>
                     </div>
+
                     <button name="tambah" type="submit" class="btn btn-success float-right mt-3">Tambah</button>
                 </form>
             </div>
@@ -66,5 +78,22 @@ if (isset($_POST['tambah'])) {
     </div>
 </div>
 <!-- Isi halaman form-data -->
+
+<script type="text/javascript">
+    function previewImg() {
+        const gambar = document.querySelector('#gambar');
+        const gambarLabel = document.querySelector('.custom-file-label');
+        const imgPreview = document.querySelector('.img-preview');
+
+        gambarLabel.textContent = gambar.files[0].name;
+
+        const fileGambar = new FileReader();
+        fileGambar.readAsDataURL(gambar.files[0]);
+
+        fileGambar.onload = function(e) {
+            imgPreview.src = e.target.result;
+        }
+    }
+</script>
 
 <?php include 'layout/footer.php'; ?>

@@ -10,7 +10,13 @@ function create_data($data)
     $tanggal           = $data['tanggal'];
     $kategori          = $data['kategori'];
 
-    $query  = "INSERT INTO tbl_konten VALUES(null, '$judul', '$isi_konten', '$tanggal', '$kategori')";
+    // upload gambar 
+    $gambar = upload_gambar_konten(); // memanggil function upload_gambar_konten
+    if (!$gambar) {
+        return false;
+    }
+
+    $query  = "INSERT INTO tbl_konten VALUES(null, '$judul', '$isi_konten', '$tanggal', '$kategori', '$gambar')";
     mysqli_query($db, $query);
 
     return mysqli_affected_rows($db);
@@ -27,4 +33,38 @@ function query($query)
         $rows[] = $row;
     }
     return $rows;
+}
+
+// fungsi upload gambar konten
+function upload_gambar_konten()
+{
+    $namaFile       = $_FILES['gambar']['name']; //nama file (gambar)
+    $ukuranFile     = $_FILES['gambar']['size']; // ukuran data (gambar)
+    $error          = $_FILES['gambar']['error']; // jika gambar error
+    $tmpName        = $_FILES['gambar']['tmp_name']; //tempat penyimpanan sementara
+
+    // Check file yg diupload
+    $extensiGambarValid = ['jpg', 'jpeg', 'png']; //menentukan extensi gambar
+    $extensiGambar      = explode('.', $namaFile);
+    $extensiGambar      = strtolower(end($extensiGambar));
+    if (!in_array($extensiGambar, $extensiGambarValid)) {
+        echo "<script>
+                alert('Format Gambar Tidak VALID');
+                document.location.href = 'form-data.php';
+            </script>";
+        die();
+    }
+
+    // jika ukuran melampaui batas maksimal
+    if ($ukuranFile > 2048000) { // batas 2 mb
+        echo "<script>
+                alert('Ukuran Gambar Terlalu Besar');
+                document.location.href = 'form-data.php';
+            </script>";
+        die();
+    }
+
+    // memindahkan data yg di upload ke folder gambar
+    move_uploaded_file($tmpName, 'assets/gambar/' . $namaFile);
+    return $namaFile;
 }
