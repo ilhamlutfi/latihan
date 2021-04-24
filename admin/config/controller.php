@@ -44,10 +44,11 @@ function upload_gambar_konten()
     $tmpName        = $_FILES['gambar']['tmp_name']; //tempat penyimpanan sementara
 
     // Check file yg diupload
-    $extensiGambarValid = ['jpg', 'jpeg', 'png']; //menentukan extensi gambar
+    $extensiGambarValid = ['jpg', 'jpeg', 'png']; // menentukan extensi gambar
     $extensiGambar      = explode('.', $namaFile);
     $extensiGambar      = strtolower(end($extensiGambar));
     if (!in_array($extensiGambar, $extensiGambarValid)) {
+        // pesan gagal
         echo "<script>
                 alert('Format Gambar Tidak VALID');
                 document.location.href = 'form-data.php';
@@ -67,4 +68,12 @@ function upload_gambar_konten()
     // memindahkan data yg di upload ke folder gambar
     move_uploaded_file($tmpName, 'assets/gambar/' . $namaFile);
     return $namaFile;
+}
+
+// fungsi limit batas karakter
+function limit_kata($string, $word_limit)
+{
+    $word_limit = $word_limit; // batas karakter
+    $cetak = substr($string, 0, $word_limit);
+    return $cetak;
 }

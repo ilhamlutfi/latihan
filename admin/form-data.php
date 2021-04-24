@@ -32,7 +32,7 @@ if (isset($_POST['tambah'])) {
     <div class="row">
         <div class="card col-sm-12 mb-5">
             <div class="card-body">
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="judul"><b>Judul</b></label>
                         <input type="text" name="judul" id="judul" class="form-control" required>
