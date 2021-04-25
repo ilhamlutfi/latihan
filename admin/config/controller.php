@@ -77,3 +77,28 @@ function limit_kata($string, $word_limit)
     $cetak = substr($string, 0, $word_limit);
     return $cetak;
 }
+
+// fungsi ubah konten 
+function update_data($data)
+{
+    global $db; // memanggil koneksi ke database dgn variabel $db
+    // menerima inputan dari form
+    $judul             = $data['judul'];
+    $isi_konten        = $data['isi_konten'];
+    $tanggal           = $data['tanggal'];
+    $kategori          = $data['kategori'];
+    $id_konten         = $data['id_konten'];
+    $gambarLama        = $data['gambarLama'];
+
+    // check gambar di ubah atau tidak
+    if ($_FILES['gambar']['error'] === 4) {
+        $gambar = $gambarLama; // jika tidak pakai gambar lama
+    } else {
+        $gambar = upload_gambar_konten(); // jika diubah pakai gambar baru
+    }
+
+    $query  = "UPDATE tbl_konten SET judul = '$judul', isi_konten = '$isi_konten', tanggal = '$tanggal', kategori = '$kategori', gambar = '$gambar' WHERE id_konten = $id_konten";
+    mysqli_query($db, $query);
+
+    return mysqli_affected_rows($db);
+}
