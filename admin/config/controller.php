@@ -102,3 +102,13 @@ function update_data($data)
 
     return mysqli_affected_rows($db);
 }
+
+// fungsi hapus data
+function delete_konten($id_konten)
+{
+    global $db;
+    $query = "DELETE FROM tbl_konten WHERE id_konten = $id_konten";
+    mysqli_query($db, $query);
+
+    return mysqli_affected_rows($db);
+}

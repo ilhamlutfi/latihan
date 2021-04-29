@@ -46,7 +46,8 @@ $konten_makanan = query("SELECT * FROM tbl_konten WHERE kategori = 'Makanan'");
 
                                         <a href="form-ubah.php?id_konten=<?= $data['id_konten']; ?>" class="btn btn-info btn-sm"><i class="fas fa-edit" data-toggle="tooltip" title="Ubah"></i></a>
 
-                                        <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt" data-toggle="tooltip" title="Hapus"></i></a>
+                                        <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalHapus<?= $data['id_konten']; ?>">
+                                            <i class="fas fa-trash-alt" data-toggle="tooltip" title="Hapus"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -57,6 +58,30 @@ $konten_makanan = query("SELECT * FROM tbl_konten WHERE kategori = 'Makanan'");
         </div>
     </div>
 </div>
+
+<!-- Modal Hapus -->
+<?php foreach ($konten_makanan as $data) : ?>
+    <div class="modal fade" id="modalHapus<?= $data['id_konten']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                    <i class="fas fa-exclamation-triangle"></i> Konfirmasi Hapus Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Yakin Data Konten Judul : <?= $data['judul']; ?> Akan Dihapus..???
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
+                    <a href="hapus-konten.php?id_konten=<?= $data['id_konten']; ?>" class="btn btn-danger btn-sm">Submit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach ?>
 
 <script type="text/javascript">
     $(function() {
