@@ -112,3 +112,32 @@ function delete_konten($id_konten)
 
     return mysqli_affected_rows($db);
 }
+
+// function tambah Akun
+function create_akun($data)
+{
+    global $db;
+
+    $nama       = strip_tags($data['nama']);
+    $username   = strip_tags($data['username']);
+    $password   = strip_tags($data['password']);
+    $level      = strip_tags($data['level']);
+
+    // enkripsi password ke database
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    $query = "INSERT INTO tbl_admin VALUES (null, '$nama', '$username', '$password', '$level')";
+    mysqli_query($db, $query);
+
+    return mysqli_affected_rows($db);
+}
+
+// fungsi hapus akun
+function delete_akun($id_admin)
+{
+    global $db;
+    $query = "DELETE FROM tbl_admin WHERE id_admin = $id_admin";
+    mysqli_query($db, $query);
+
+    return mysqli_affected_rows($db);
+}
