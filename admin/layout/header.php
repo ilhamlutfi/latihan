@@ -83,8 +83,22 @@
                 </div>
             </li>
 
+            <!-- Nav Item - Daftar Akun -->
+            <li class="nav-item">
+                <a class="nav-link" href="daftar-akun.php">
+                    <i class="fas fa-fw fa-users-cog"></i>
+                    <span>Daftar Akun</span></a>
+            </li>
+
+            <!-- Nav Item - Logout -->
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php">
+                    <i class="fas fa-fw fa-sign-out-alt"></i>
+                    <span>Logout</span></a>
+            </li>
+
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
