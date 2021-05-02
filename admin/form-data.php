@@ -60,7 +60,7 @@ if (isset($_POST['tambah'])) {
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="gambar"><b>Gambar</b></label><br>
+                            <label for="gambar"><b>Gambar <small>(Max 2 MB</small></b></label><br>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="gambar" name="gambar" onchange="previewImg()" required>
                                 <label class="custom-file-label" for="gambar">Pilih gambar...</label>

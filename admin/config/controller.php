@@ -141,3 +141,23 @@ function delete_akun($id_admin)
 
     return mysqli_affected_rows($db);
 }
+
+// function ubah Akun
+function update_akun($data)
+{
+    global $db;
+
+    $id_admin   = $data['id_admin'];
+    $nama       = strip_tags($data['nama']);
+    $username   = strip_tags($data['username']);
+    $password   = strip_tags($data['password']);
+    $level      = strip_tags($data['level']);
+
+    // enkripsi password ke database
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    $query = "UPDATE tbl_admin SET nama = '$nama', username = '$username', password = '$password', level = '$level' WHERE id_admin = $id_admin";
+    mysqli_query($db, $query);
+
+    return mysqli_affected_rows($db);
+}
