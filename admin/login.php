@@ -1,6 +1,31 @@
-<?php  
+<?php
 
 include 'config/config.php';
+
+if (isset($_POST['login'])) {
+    $username = mysqli_real_escape_string($db, $_POST['username']);
+    $password = mysqli_real_escape_string($db, $_POST['password']);
+
+    $result = mysqli_query($db, "SELECT * FROM tbl_admin WHERE username = '$username'");
+
+    //check username
+    if (mysqli_num_rows($result) === 1) {
+        //check password
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row["password"])) {
+            // set session
+            $_SESSION["login"]      = true;
+            $_SESSION["id_admin"]   = $row["id_admin"];
+            $_SESSION["nama"]       = $row["nama"];
+            $_SESSION["username"]   = $row["username"];
+            $_SESSION["level"]      = $row["level"];
+
+            header("Location: index.php");
+            exit;
+        }
+    }
+    $error = true;
+}
 
 
 ?>
@@ -24,7 +49,7 @@ include 'config/config.php';
 
     <!-- Custom styles for this template-->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="assets/gambar/user-icon.png" type="image/x-icon"/>
+    <link rel="shortcut icon" href="assets/gambar/user-icon.png" type="image/x-icon" />
 
 </head>
 
@@ -47,12 +72,19 @@ include 'config/config.php';
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Administrator Login</h1>
                                     </div>
-                                    <form class="user">
+
+                                    <?php if (isset($error)) : ?>
+                                        <div align="center" class="mb-2 alert alert-danger alert-dismissible fade show" role="alert">
+                                            <i><b>Username / Password SALAH</b></i>
+                                        </div>
+                                    <?php endif; ?>
+                                    
+                                    <form class="user" action="" method="POST">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <input type="text" class="form-control form-control-user" name="username" placeholder="username..." required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" name="password" placeholder="password..." required>
                                         </div>
                                         <button type="submit" name="login" class="btn btn-success btn-user btn-block">
                                             Login
