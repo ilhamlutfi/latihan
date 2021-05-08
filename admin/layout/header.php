@@ -23,7 +23,8 @@
     <!-- Custom styles for this page -->
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="assets/vendor/jquery/jquery.min.js"></script>
-
+    <link rel="shortcut icon" href="assets/gambar/user-icon.png" type="image/x-icon" />
+    
 </head>
 
 <body id="page-top">
