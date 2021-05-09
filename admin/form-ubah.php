@@ -1,5 +1,15 @@
 <?php
 
+session_start();
+
+if (!isset($_SESSION["login"])) {
+    echo "<script>
+            alert('Anda harus login terlebih dahulu');
+            document.location.href = 'login.php';
+          </script>";
+    exit;
+}
+
 $title = 'Halaman Form Ubah'; // judul halaman
 
 include 'layout/header.php'; // memanggil file header.php di dlm folder layout

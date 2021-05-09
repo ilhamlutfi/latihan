@@ -2,6 +2,12 @@
 
 include 'config/config.php';
 
+// Check session jika sudah login lempar ke dashboard kembali
+if (isset($_SESSION["login"])) {
+    header("Location: index.php");
+    exit;
+}
+
 if (isset($_POST['login'])) {
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
@@ -78,7 +84,7 @@ if (isset($_POST['login'])) {
                                             <i><b>Username / Password SALAH</b></i>
                                         </div>
                                     <?php endif; ?>
-                                    
+
                                     <form class="user" action="" method="POST">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" name="username" placeholder="username..." required>
